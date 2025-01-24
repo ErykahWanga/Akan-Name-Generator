@@ -1,21 +1,28 @@
-document.getElementById('akan-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-
+document.getElementById('calculate-button').addEventListener('click', function () {
     const day = parseInt(document.getElementById('day').value);
     const month = parseInt(document.getElementById('month').value);
     const year = parseInt(document.getElementById('year').value);
+    const gender = document.getElementById('gender').value;
 
-    const century = Math.floor(year / 100);
-    const yearOfCentury = year % 100;
+    if (!day || !month || !year || !gender) {
+        alert('Please fill in all the fields.');
+        return;
+    }
 
-    // Formula to calculate day of the week
-    const d = Math.floor(((century / 4) - 2 * century - 1 + (5 * yearOfCentury / 4) + (26 * (month + 1) / 10) + day) % 7);
+    const CC = Math.floor(year / 100);
+    const YY = year % 100;
 
-    const dayOfWeek = (d + 7) % 7; // Ensure positive result for mod
+    const d = Math.floor((CC / 4) - 2 * CC - 1) +
+              Math.floor((5 * YY / 4)) +
+              Math.floor((26 * (month + 1) / 10)) +
+              day;
 
-    const akanNames = ["Kwasi", "Kwadwo", "Kwabena", "Kwaku", "Yaw", "Kofi", "Kwame"];
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const dayIndex = ((d % 7) + 7) % 7; // Ensures non-negative result
 
-    const result = document.getElementById('result');
-    result.innerHTML = `You were born on a ${days[dayOfWeek]}, and your Akan name is ${akanNames[dayOfWeek]}.`;
+    const maleNames = ['Kwasi', 'Kwadwo', 'Kwabena', 'Kwaku', 'Yaw', 'Kofi', 'Kwame'];
+    const femaleNames = ['Akosua', 'Adwoa', 'Abenaa', 'Akua', 'Yaa', 'Afua', 'Ama'];
+
+    const akanName = gender === 'male' ? maleNames[dayIndex] : femaleNames[dayIndex];
+
+    document.getElementById('result').innerHTML = `<p>Your Akan name is: <strong>${akanName}</strong></p>`;
 });
