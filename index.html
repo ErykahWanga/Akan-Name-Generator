@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akan Name</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-</html>
 <body>
     <div class="container">
         <div class="row">
@@ -14,23 +13,36 @@
                 <p>Fill in the form below to get your Akan name</p>
                 <form id="akanForm">
                     <div class="form-group">
-                        <label for="date">Date</label>
-                        <input type="number" id="Day" min="1"  max="31">
+                        <label for="date"><strong>Day:</strong></label>
+                        <input type="number" id="Day" name="Day" min="1"  max="31">
                     </div>
+                    <br>
                     <div class="form-group">
-                        <label for="month">Month</label>
-                        <input type="number" id="month" min="1" max="12" required>
+                        <label for="month"><strong>Month:</strong></label>
+                        <input type="number" id="month" name="Month" min="1" max="12" required>
                     </div>
+                    <br>
                     <div class="form-group">
-                        <label for="year">Year</label>
-                        <input type="number" id="year" min="1900" max="2025" required>
+                        <label for="year"><strong>Year:</strong></label>
+                        <input type="number" id="year" name="Year" min="1900" max="2025" required>
                     </div>
-
+                       <br>
                     <div class="form-group">
-                        <label for="gender">Gender</label>
                         
-                        <input type="radio" name="female">Female</input required>
-                        <input type="radio"  name="male">male</input>
-                    </div>
+                        <label for="gender"><strong>Gender:</strong></label>
+                        <br>
+                        <input type="radio" name="gender" value="female">Female</input>
+                        <br>
+                        <input type="radio" name="gender" value="male">Male</input>
+                    <br>
+                    <button type="submit" onclick="calculateAkanName()">Submit</button>
+                </form>
+
+                <div id="results"></div>
+            </div>
+            <script src="script.js"></script>
+            </body>
+            </html>
+
 
     
