@@ -1,28 +1,27 @@
-document.getElementById('calculate-button').addEventListener('click', function () {
-    const day = parseInt(document.getElementById('day').value);
-    const month = parseInt(document.getElementById('month').value);
-    const year = parseInt(document.getElementById('year').value);
-    const gender = document.getElementById('gender').value;
+document.getElementById('akanForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-    if (!day || !month || !year || !gender) {
-        alert('Please fill in all the fields.');
-        return;
+    const gender = document.getElementById('gender').value;
+    const birthDate = document.getElementById('birthDate').value;
+
+    if (!gender || !birthDate) {
+      alert('Please fill in all fields.');
+      return;
     }
 
-    const CC = Math.floor(year / 100);
-    const YY = year % 100;
+    const date = new Date(birthDate);
+    const CC = Math.floor(date.getFullYear() / 100);
+    const YY = date.getFullYear() % 100;
+    const MM = date.getMonth() + 1;
+    const DD = date.getDate();
 
-    const d = Math.floor((CC / 4) - 2 * CC - 1) +
-              Math.floor((5 * YY / 4)) +
-              Math.floor((26 * (month + 1) / 10)) +
-              day;
+    const dayOfWeek = Math.floor(((CC / 4) - 2 * CC - 1 + (5 * YY / 4) + (26 * (MM + 1) / 10) + DD) % 7);
+    const dayIndex = (dayOfWeek + 7) % 7; // Ensure positive index
 
-    const dayIndex = ((d % 7) + 7) % 7; // Ensures non-negative result
-
-    const maleNames = ['Kwasi', 'Kwadwo', 'Kwabena', 'Kwaku', 'Yaw', 'Kofi', 'Kwame'];
-    const femaleNames = ['Akosua', 'Adwoa', 'Abenaa', 'Akua', 'Yaa', 'Afua', 'Ama'];
+    const maleNames = ["Kwasi", "Kwadwo", "Kwabena", "Kwaku", "Yaw", "Kofi", "Kwame"];
+    const femaleNames = ["Akosua", "Adwoa", "Abena", "Akua", "Yaa", "Afia", "Ama"];
 
     const akanName = gender === 'male' ? maleNames[dayIndex] : femaleNames[dayIndex];
 
-    document.getElementById('result').innerHTML = `<p>Your Akan name is: <strong>${akanName}</strong></p>`;
-});
+    document.getElementById('result').textContent = `Your Akan name is ${akanName}.`;
+  });
