@@ -1,48 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akan Name</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akan Name Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <p>In Akan culture, names are often based on the day of the week a child is born and the gender of the child. These names are rooted in the Akan tradition and carry deep cultural and spiritual significance.</p>
-                <p>Fill in the form below to get your Akan name</p>
-                <form id="akanForm">
-                    <div class="form-group">
-                        <label for="date"><strong>Day:</strong></label>
-                        <input type="number" id="Day" name="Day" min="1"  max="31">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="month"><strong>Month:</strong></label>
-                        <input type="number" id="month" name="Month" min="1" max="12" required>
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="year"><strong>Year:</strong></label>
-                        <input type="number" id="year" name="Year" min="1900" max="2025" required>
-                    </div>
-                       <br>
-                    <div class="form-group">
-                        
-                        <label for="gender"><strong>Gender:</strong></label>
-                        <br>
-                        <input type="radio" name="gender" value="female">Female</input>
-                        <br>
-                        <input type="radio" name="gender" value="male">Male</input>
-                    <br>
-                    <button type="submit" onclick="calculateAkanName()">Submit</button>
-                </form>
+  <div class="container">
+    <h1>Akan Name Generator</h1>
+    <form id="akanForm">
+      <label for="gender">Gender:</label>
+      <select id="gender" required>
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
 
-                <div id="results"></div>
-            </div>
-            <script src="script.js"></script>
-            </body>
-            </html>
+      <label for="year">Year of Birth:</label>
+      <input type="number" id="year" placeholder="YYYY" required>
 
+      <label for="month">Month of Birth:</label>
+      <input type="number" id="month" placeholder="MM" required>
 
-    
+      <label for="date">Date of Birth:</label>
+      <input type="number" id="date" placeholder="DD" required>
+
+      <button type="submit">Generate Akan Name</button>
+    </form>
+
+    <div class="result" id="result"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
