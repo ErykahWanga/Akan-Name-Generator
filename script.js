@@ -1,36 +1,47 @@
 function generateAkanName() {
-    const year = document.getElementById("year").value;
-    const month = document.getElementById("month").value;
-    const date = document.getElementById("date").value;
+    const year = parseInt(document.getElementById("year").value);
+    const month = parseInt(document.getElementById("month").value);
+    const date = parseInt(document.getElementById("date").value);
     const gender = document.getElementById("gender").value;
   
     if (!year || !month || !date || !gender) {
-      document.getElementById("result").textContent = "Please fill in all fields.";
+      document.getElementById("result").textContent = "Please fill in all fields correctly.";
       return;
     }
   
-    // Parse the date inputs
+    // Correct day-of-week calculation formula
     const CC = Math.floor(year / 100); // Century
     const YY = year % 100; // Year within the century
-    const MM = parseInt(month); // Month
-    const DD = parseInt(date); // Date
+    const MM = month; // Month
+    const DD = date; // Date
   
-    // Formula to calculate the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
-    const dayOfWeek = Math.floor(( (CC / 4) - (2 * CC) - 1 + (5 * YY / 4) + (26 * (MM + 1) / 10) + DD ) % 7);
+    // Adjust months and years for Zeller's congruence
+    const adjustedMonth = MM < 3 ? MM + 12 : MM;
+    const adjustedYear = MM < 3 ? year - 1 : year;
+  
+    // Day-of-week calculation using Zeller's formula
+    const dayOfWeek = Math.floor(
+      (DD + Math.floor((13 * (adjustedMonth + 1)) / 5) + adjustedYear % 100 + Math.floor((adjustedYear % 100) / 4) +
+        Math.floor((adjustedYear / 100) / 4) - 2 * Math.floor(adjustedYear / 100)) %
+        7
+    );
+  
+    // Adjust day-of-week (0=Saturday, ..., 6=Friday)
+    const correctedDayOfWeek = (dayOfWeek + 7) % 7;
   
     // Akan names
     const maleNames = ["Kwasi", "Kwadwo", "Kwabena", "Kwaku", "Yaw", "Kofi", "Kwame"];
     const femaleNames = ["Akosua", "Adwoa", "Abena", "Akua", "Yaa", "Afia", "Ama"];
   
-    // Get the corresponding Akan name based on gender and day of the week
+    // Get Akan name
     let akanName = "";
     if (gender === "male") {
-      akanName = maleNames[dayOfWeek];
+      akanName = maleNames[correctedDayOfWeek];
     } else if (gender === "female") {
-      akanName = femaleNames[dayOfWeek];
+      akanName = femaleNames[correctedDayOfWeek];
     }
   
-    // Output the result
+    // Display result
     document.getElementById("result").textContent = `Your Akan name is: ${akanName}`;
   }
   
