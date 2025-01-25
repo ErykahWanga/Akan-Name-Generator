@@ -17,6 +17,9 @@ body {
   h1 {
     color: #fdf9f9;
   }
+  p {
+    color: #fdfdfd; /* or any other valid color value */
+  }
   
   input, select, button {
     margin: 10px 0;
