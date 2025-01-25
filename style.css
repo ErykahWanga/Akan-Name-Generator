@@ -18,7 +18,7 @@ body {
     color: #fdf9f9;
   }
   p {
-    color: #fdfdfd; /* or any other valid color value */
+    color: #fdfdfd; 
   }
   
   input, select, button {
@@ -51,38 +51,26 @@ body {
 }
 .slide-container {
     width: 100%;
-    height: 300px;
-    background-color: #f0f0f0;
+    height: 80px;
+    background-color: #fd0505;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: hidden; 
 }
 
 .slide-heading {
     font-size: 2.5em;
     color: #333;
     font-family: Arial, sans-serif;
-    white-space: nowrap;
-    animation: slide-in 3s ease-in-out;
+    position: relative;
+    animation: slideRight 5s linear infinite;
 }
-.slide-container {
-    width: 100%;
-    height: 100px;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
+
 @keyframes slideRight {
     0% {
-        transform: translateX(-100%); /* Start off-screen to the left */
-    }
-    50% {
-        transform: translateX(50%); /* Move to the center */
+        left: -100%; 
     }
     100% {
-        transform: translateX(100%); /* End off-screen to the right */
-        }
+        left: 100%; 
     }
