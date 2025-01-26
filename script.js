@@ -8,6 +8,34 @@ function generateAkanName() {
       document.getElementById("result").textContent = "Please fill in all fields correctly.";
       return;
     }
+    if (year < 1900 || year > 2025) {
+      result.textContent = "Year must be between 1900 and 2025.";
+      return;
+  }
+
+  // Validate month
+  if (month < 1 || month > 12) {
+      result.textContent = "Month must be between 1 and 12.";
+      return;
+  }
+
+  // Validate day
+  if (day < 1 || day > 31) {
+      result.textContent = "Day must be between 1 and 31.";
+      return;
+  }
+
+  // Validate day against the month
+  const daysInMonth = new Date(year, month, 0).getDate(); // Get days in the month
+  if (day > daysInMonth) {
+      result.textContent = `Invalid day for the given month. ${month}/${year} has only ${daysInMonth} days.`;
+      return;
+  }
+
+  // If all validations pass
+  result.style.color = "green";
+  result.textContent = `Valid date: ${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
+}
   
     // Correct day-of-week calculation formula
     const CC = Math.floor(year / 100); // Century
@@ -43,26 +71,6 @@ function generateAkanName() {
   
     // Display result
     document.getElementById("result").textContent = `Your Akan name is: ${akanName}`;
-  }
+  
   const dateInput = document.getElementById('dateInput');
-        
-  // Set dynamic limits
-  const minDate = "1900-01-01";
-  const maxDate = "2025-12-31";
-  dateInput.min = minDate;
-  dateInput.max = maxDate;
-
-  // Validate the selected date
-  dateInput.addEventListener('change', () => {
-      const selectedDate = new Date(dateInput.value);
-      const min = new Date(minDate);
-      const max = new Date(maxDate);
-
-      if (selectedDate < min || selectedDate > max) {
-          alert("Selected date is out of range!");
-          dateInput.value = ""; // Clear the invalid date
-      } else {
-                console.log("Valid date selected:", dateInput.value);
-            }
-        });
-      
+  
