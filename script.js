@@ -3,45 +3,46 @@ function generateAkanName() {
     const month = parseInt(document.getElementById("month").value);
     const date = parseInt(document.getElementById("date").value);
     const gender = document.getElementById("gender").value;
+    const result = document.getElementById("result");
   
     if (!year || !month || !date || !gender) {
-      document.getElementById("result").textContent = "Please fill in all fields correctly.";
+      result.textContent = "Please fill in all fields correctly.";
       return;
     }
     if (year < 1900 || year > 2025) {
-      result.textContent = "Year must be between 1900 and 2025.";
+      document.getElementById("result").textContent = "Year must be between 1900 and 2025.";
       return;
   }
 
   // Validate month
   if (month < 1 || month > 12) {
-      result.textContent = "Month must be between 1 and 12.";
+      document.getElementById("result").textContent = "Month must be between 1 and 12.";
       return;
   }
 
   // Validate day
-  if (day < 1 || day > 31) {
-      result.textContent = "Day must be between 1 and 31.";
+  if (date < 1 || date > 31) {
+      document.getElementById("result").textContent = "Day must be between 1 and 31.";
       return;
   }
 
   // Validate day against the month
   const daysInMonth = new Date(year, month, 0).getDate(); // Get days in the month
-  if (day > daysInMonth) {
-      result.textContent = `Invalid day for the given month. ${month}/${year} has only ${daysInMonth} days.`;
+  if (date > daysInMonth) {
+      document.getElementById("result").textContent = `Invalid day for the given month. ${month}/${year} has only ${daysInMonth} days.`;
       return;
   }
 
   // If all validations pass
   result.style.color = "green";
-  result.textContent = `Valid date: ${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
-}
-  
-    // Correct day-of-week calculation formula
-    const CC = Math.floor(year / 100); // Century
-    const YY = year % 100; // Year within the century
-    const MM = month; // Month
-    const DD = date; // Date
+  result.textContent = `Valid date: ${year}-${month.toString().padStart(2, "0")}-${date.toString().padStart(2, "0")}`;
+result.textContent = `Valid date: ${year}-${month.toString().padStart(2, "0")}-${date.toString().padStart(2, "0")}`;
+
+  // Correct day-of-week calculation formula
+  const CC = Math.floor(year / 100); // Century
+  const YY = year % 100; // Year within the century
+  const MM = month; // Month
+  const DD = date; // Date
   
     // Adjust months and years for Zeller's congruence
     const adjustedMonth = MM < 3 ? MM + 12 : MM;
@@ -70,7 +71,6 @@ function generateAkanName() {
     }
   
     // Display result
-    document.getElementById("result").textContent = `Your Akan name is: ${akanName}`;
-  
-  const dateInput = document.getElementById('dateInput');
-  
+    result.textContent = `Your Akan name is: ${akanName}`;
+    const dateInput = document.getElementById('dateInput');
+  }
