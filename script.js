@@ -44,4 +44,25 @@ function generateAkanName() {
     // Display result
     document.getElementById("result").textContent = `Your Akan name is: ${akanName}`;
   }
-  
+  const dateInput = document.getElementById('dateInput');
+        
+  // Set dynamic limits
+  const minDate = "1900-01-01";
+  const maxDate = "2025-12-31";
+  dateInput.min = minDate;
+  dateInput.max = maxDate;
+
+  // Validate the selected date
+  dateInput.addEventListener('change', () => {
+      const selectedDate = new Date(dateInput.value);
+      const min = new Date(minDate);
+      const max = new Date(maxDate);
+
+      if (selectedDate < min || selectedDate > max) {
+          alert("Selected date is out of range!");
+          dateInput.value = ""; // Clear the invalid date
+      } else {
+                console.log("Valid date selected:", dateInput.value);
+            }
+        });
+      
